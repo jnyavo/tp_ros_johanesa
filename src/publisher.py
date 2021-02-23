@@ -6,13 +6,13 @@ from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Bool
 
 class publish_carre:
-	def __init__(self,dist,x=0,y=0):
+	def __init__(self,dist,init_x=0,init_y=0):
 		self.pub= rospy.Publisher('trajet_carre',PoseStamped, queue_size=10)
         	rospy.init_node('talker')
         	self.rate = rospy.Rate(15)
 		self.distance = dist
-        	self.x = 0
-		self.y = 0
+        	self.x = init_x
+		self.y = init_y
 		self.go = False
         	
 	def run(self):
