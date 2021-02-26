@@ -24,7 +24,7 @@ class publish_carre:
 		sur_x = True
 		compteur = 0
 		i = 0
-		vitesse = 1 # entre ]0;1]
+		vitesse = 1 # entre ]0;distance]
 		while not rospy.is_shutdown():
 			
 			
@@ -42,7 +42,7 @@ class publish_carre:
 				my_msg.pose.position.x = self.x
 				my_msg.pose.position.y = self.y
 				self.pub.publish(my_msg)
-				i += 1
+				i += abs(vitesse)
 				self.rate.sleep()
 				
 				
