@@ -5,6 +5,8 @@
 
 
 Ce projet consiste à publier la position d'un point effectuant une trajectoire carrée sur un topic ROS
+ - Le mouvement peut être suivi sur rviz
+ - Le mouvement s'arrête et continue en actionant le bouton
 
 
 ## Lancement
@@ -20,5 +22,8 @@ Avec rosrun
 ```sh
 rosrun tp_ros_johanesa publisher.py
 ```
+Ce projet necéssite le lancement de l'interface bouton <br>
+Interface bouton : <br>
+https://github.com/Kramoth/button_gui
 
 
