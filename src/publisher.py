@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import rospy
-import math
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Bool
 
@@ -24,13 +23,13 @@ class publish_carre:
 		
 		sur_x = True
 		compteur = 0
-		en_avant = True
 		i = 0
+		vitesse = 1 # entre ]0;distance]
 		while not rospy.is_shutdown():
 			
 			
-			if (compteur % 2 == 0 and self.go):
-				en_avant = not en_avant	
+			if (compteur % 2 == 0):
+				vitesse *= -1
 
 			while (i < self.distance):
 				if rospy.is_shutdown():
@@ -39,20 +38,18 @@ class publish_carre:
 				self.listener(Bool,'button_state')
 				if (not self.go):
 					continue
-				self.mouvement_droit(sur_x,en_avant,1)
+				self.mouvement_droit(sur_x,vitesse)
 				my_msg.pose.position.x = self.x
 				my_msg.pose.position.y = self.y
 				self.pub.publish(my_msg)
-				self.rate.sleep()
 				i += 1
+				self.rate.sleep()
+				
 				
 			else:
 				i = 0
-
-						
-			
-			sur_x = not sur_x
-			compteur += 1
+				sur_x = not sur_x
+				compteur += 1
 			
 
 			
@@ -60,18 +57,14 @@ class publish_carre:
 				
 			
 
-	def mouvement_droit(self,sur_x, en_avant, distance):
+	def mouvement_droit(self,sur_x, distance):
 
-		if(en_avant):		
-			if(sur_x):
-				self.x += distance
-			else:
-				self.y += distance
+		if(sur_x):
+			
+			self.x += distance
 		else:
-			if(sur_x):
-				self.x -= distance
-			else:
-				self.y -= distance
+			self.y += distance
+
 
 	def callback(self,data):
 		self.go = data.data
@@ -112,7 +105,7 @@ def talker_func():
 """
 if __name__ == '__main__':
 	try:
-		talk = publish_carre(5)
+		talk = publish_carre(4)
 		talk.run()
 	except rospy.ROSInterruptException:
 		pass
