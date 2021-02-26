@@ -24,7 +24,7 @@ class publish_carre:
 		sur_x = True
 		compteur = 0
 		i = 0
-		vitesse = 1 # entre ]0;distance]
+		vitesse = 1 # entre ]0;1]
 		while not rospy.is_shutdown():
 			
 			
