@@ -38,7 +38,7 @@ class publish_carre:
 					
 				self.listener(Bool,'button_state')
 				if (not self.go):
-					break
+					continue
 				self.mouvement_droit(sur_x,en_avant,1)
 				my_msg.pose.position.x = self.x
 				my_msg.pose.position.y = self.y
@@ -50,8 +50,7 @@ class publish_carre:
 				i = 0
 
 						
-			if (not self.go):
-				continue		
+			
 			sur_x = not sur_x
 			compteur += 1
 			

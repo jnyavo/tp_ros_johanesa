@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="tp_ros_johanesa" name="trajet_carre" type="publisher.py"/>
+	<node pkg="button_gui" name="bouton" type="button_node.py"/>
+</launch>
